@@ -1,0 +1,38 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../utils/variables";
+@import "../utils/utilities";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../base/rfs";
+// @import "../../node_modules/bootstrap";
+
+// @import "./layout/header.scss";
+// @import "./layout/footer.scss";
+
+// @import "./reboot.scss";
+// @import "./pages/index.scss";
+// @import "./pages/admin.scss";
+
+// @import "./component/button.scss";
+// @import "./component/ck-editor.scss";
+
+// @import "../../node_modules/bootstrap";
+
+@import "../base/base";
+// @import "./component/table.scss";
+
+body {
+  background-color: lightgoldenrodyellow;
+  .wrap {
+    max-width: 1296px;
+    margin: 0 auto;
+    .logo {
+      width: 100%;
+    }
+  }
+}
+
+header {
+  background-color: wheat;
+  text-align: center;
+  color: brown;
+}
