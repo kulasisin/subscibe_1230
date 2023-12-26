@@ -1,0 +1,77 @@
+body {
+  font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
+  background-color: #f8f9fe;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 30px;
+}
+
+/*-----------------------------*/
+/*  圖表框 chart-box
+/*-----------------------------*/
+.chart-box {
+  width: calc(33.3333% - 2%);
+  margin: 2% 1%;
+  background-color: #fff;
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .chart-box {
+    width: calc(50% - 2%);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .chart-box {
+    width: calc(100% - 2%);
+  }
+}
+
+.chart-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chart-header span {
+  display: block;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #8898aa;
+}
+
+.chart-header h3.title {
+  margin: 2px 0;
+  font-size: 20px;
+}
+
+/*------------------------------*/
+/*  黑色版本 dark 
+/*------------------------------*/
+.chart-box.dark {
+  background-color: #172b4d;
+}
+
+.chart-header.dark {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chart-header.dark h3.title {
+  color: #fff;
+}
+
+/*------------------------------*/
+/*  chart-body
+/*------------------------------*/
+.chart-body {
+  box-sizing: border-box;
+  padding: 1.5rem;
+  margin: 0 auto;
+  position: relative;
+  min-height: 220px;
+  width: 100%;
+}
