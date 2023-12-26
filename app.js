@@ -1,9 +1,9 @@
-import "./scss/stylesheets/style.scss";
-import "bootstrap/dist/js/bootstrap.min.js";
-const bootstrap = require("bootstrap");
+// import "./scss/stylesheets/style.scss";
+// import "bootstrap/dist/js/bootstrap.min.js";
+// const bootstrap = require("bootstrap");
 const express = require("express");
 const app = express();
-const Joi = require("@hapi/joi");
+// const Joi = require("@hapi/joi");
 const movies = require("./movies");
 const path = require("path");
 const sassMiddleware = require("node-sass-middleware");
