@@ -1,0 +1,16 @@
+.wrap {
+  max-width: 1296px;
+  margin: 0 auto;
+}
+.logo {
+  width: 100%;
+}
+body {
+  background-color: lightgoldenrodyellow;
+}
+
+header {
+  background-color: white;
+  text-align: center;
+  color: brown;
+}
