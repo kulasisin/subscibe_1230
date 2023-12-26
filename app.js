@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const Joi = require("@hapi/joi");
 const movies = require("./movies");
-
+const path = require("path");
 // app.use(express.json());
 
 // app.get("/", (req, res) => {
