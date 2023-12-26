@@ -2,6 +2,7 @@
 @import "../utils/variables";
 @import "../utils/utilities";
 @import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../reboot/reboot";
 @import "../base/rfs";
 // @import "../../node_modules/bootstrap";
 
@@ -22,17 +23,32 @@
 
 body {
   background-color: lightgoldenrodyellow;
+
   .wrap {
     max-width: 1296px;
     margin: 0 auto;
     .logo {
       width: 100%;
     }
+
+    .banner {
+      background-image: url(/image/banner.jpeg);
+      background-size: cover;
+      background-position: center;
+      height: 250px;
+      @media (min-width: 576px) {
+        height: 500px;
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+    color: white;
   }
 }
 
 header {
-  background-color: wheat;
+  background-color: rgba(129, 125, 120, 0.441);
   text-align: center;
   color: brown;
 }
