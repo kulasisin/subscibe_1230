@@ -6,7 +6,7 @@ const movies = require("./movies");
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Daily Code Buffer in Heroku Auto Deployment!!");
+  res.send("歡迎來到永夜安安工作室！！探險火寶現正熱映中！！1226");
 });
 
 const port = process.env.PORT || "5000";
