@@ -1,0 +1,17 @@
+/* Error: Can't find stylesheet to import.
+ *    ,
+ * 16 | @import "../../node_modules/bootstrap";
+ *    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   scss\stylesheets\style.scss 16:9  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a    \2577 \a 16 \2502  @import \"../../node_modules/bootstrap\";\d\a    \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   scss\\stylesheets\\style.scss 16:9  root stylesheet";
+}
