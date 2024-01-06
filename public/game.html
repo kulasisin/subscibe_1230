@@ -7,10 +7,99 @@
     <!-- <link rel="stylesheet" href="./css/index.css" /> -->
     <link rel="stylesheet" href="./stylesheets/style.css" />
   </head>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- 若需相容 IE11，要加載 Promise Polyfill-->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
+
+  <!-- 引入 p5.js 庫 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+  <!-- JavaScript 檔案 這個是滿版廣告的js檔 會另外跑出一個畫布-->
+
   <body>
+    <button onclick="alertTest(`./image/ad_C_1.png`)">Alert</button>
+    <button onclick="closeAlert()">Confirm</button>
+    <script>
+      function alertTest(url) {
+        let timerInterval;
+        Swal.fire({
+          title: "請觀看所點擊廣告",
+          html: "<p>觀看廣告剩餘時間<b></b>秒</p><untouched></untouched>",
+          imageUrl: url,
+          imageAlt: "Custom image",
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${(Swal.getTimerLeft() / 1000).toFixed(0)}`;
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+          }
+        });
+      }
+      function subAd() {
+        let timerInterval;
+        Swal.fire({
+          title: "感謝您的訂閱",
+          html: "您花費 100 NT$ 永久訂閱我們<untouched></untouched>",
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {}, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            scoreSub++;
+            localStorage.setItem("scoreSub", scoreSub);
+            console.log("訂閱:" + scoreSub);
+          }
+        });
+      }
+      function closeAlert() {
+        let timerInterval;
+        Swal.fire({
+          title: "指定不退！找到「Xclose」按鍵關閉視窗中心廣告！",
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+
+            timerInterval = setInterval(() => {}, 100);
+          },
+          showClass: {
+            popup: `
+      animate__animated
+      animate__fadeInUp
+      animate__faster
+    `,
+          },
+          hideClass: {
+            popup: `
+      animate__animated
+      animate__fadeOutDown
+      animate__faster
+    `,
+          },
+        });
+      }
+    </script>
+
     <div class="wrap px-2">
       <header class="pt-4">
-        <a href="#"
+        <a href="#" class="ad" onclick="alertTest(`./image/ad_C_1.png`)"
           ><img class="normal_ad" src="./image/ad_C_1.png" alt="一般廣告"
         /></a>
         <nav class="d-flex align-items-center border-bottom border-pink">
@@ -42,7 +131,7 @@
                 class="click-ad border border-black rounded position-absolute bottom-0 end-0 pt-2 pb-5 px-4"
               >
                 <p class="fs-4">是否訂閱指定不退新聞網？</p>
-                <div class="d-flex justify-content-center fs-2">
+                <div class="subscribe d-flex justify-content-center fs-2">
                   <button type="button" class="border-0 px-4 py-1 me-4 rounded">
                     否
                   </button>
@@ -61,12 +150,16 @@
           <div
             class="intro-right text-end d-flex flex flex-column justify-content-around"
           >
-            <a href="#"><img src="./image/small-ad-1.png" alt="小廣告" /></a>
-            <a href="#"><img src="./image/small-ad-2.png" alt="小廣告" /></a>
+            <a href="#" class="ad" onclick="alertTest(`./image/small-ad-1.png`)"
+              ><img src="./image/small-ad-1.png" alt="小廣告"
+            /></a>
+            <a href="#" class="ad" onclick="alertTest(`./image/small-ad-2.png`)"
+              ><img src="./image/small-ad-2.png" alt="小廣告"
+            /></a>
           </div>
         </div>
         <div class="text-center pt-5">
-          <a href="#"
+          <a href="#" class="ad" onclick="alertTest(`./image/ad_D_3.png`)"
             ><img class="normal_ad" src="./image/ad_D_3.png" alt="一般廣告"
           /></a>
         </div>
@@ -78,13 +171,19 @@
 
             <ul class="icons text-center px-7">
               <li class="py-3">
-                <a href="#"><img src="./image/facebook.png" alt="fb" /></a>
+                <a href="#" class="subscribe"
+                  ><img src="./image/facebook.png" alt="fb"
+                /></a>
               </li>
               <li class="py-3">
-                <a href="#"><img src="./image/instagram.png" alt="ig" /></a>
+                <a href="#" class="subscribe"
+                  ><img src="./image/instagram.png" alt="ig"
+                /></a>
               </li>
               <li class="py-3">
-                <a href="#"><img src="./image/twitter.png" alt="twitter" /></a>
+                <a href="#" class="subscribe"
+                  ><img src="./image/twitter.png" alt="twitter"
+                /></a>
               </li>
             </ul>
           </div>
@@ -101,7 +200,10 @@
                 </p>
               </div>
               <div>
-                <a href="#"
+                <a
+                  href="#"
+                  class="ad"
+                  onclick="alertTest(`./image/small-ad-1.png`)"
                   ><img class="w-100" src="./image/small-ad-1.png" alt="小廣告"
                 /></a>
               </div>
@@ -118,18 +220,21 @@
             </div>
           </div>
         </div>
-        <a href="#"
+        <a href="#" class="ad" onclick="alertTest(`./image/ad_C_1.png`)"
           ><img class="normal_ad" src="./image/ad_C_1.png" alt="一般廣告"
         /></a>
         <div class="d-flex justify-content-between section2 pt-6">
           <div class="me-7">
-            <a href="#"
+            <a href="#" class="ad" onclick="alertTest(`./image/small-ad-3.png`)"
               ><img
                 class="w-100 pb-7"
                 src="./image/small-ad-3.png"
                 alt="小廣告"
               /> </a
-            ><a href="#"
+            ><a
+              href="#"
+              class="ad"
+              onclick="alertTest(`./image/small-ad-1.png`)"
               ><img class="w-100" src="./image/small-ad-1.png" alt="小廣告"
             /></a>
           </div>
@@ -145,13 +250,13 @@
           </div>
         </div>
         <div class="text-center pt-5">
-          <a href="#"
+          <a href="#" class="ad" onclick="alertTest(`./image/ad_C_1.png`)"
             ><img
               class="normal_ad pb-4"
               src="./image/ad_C_1.png"
               alt="一般廣告"
           /></a>
-          <a href="#"
+          <a href="#" class="ad" onclick="alertTest(`./image/ad_D_3.png`)"
             ><img class="normal_ad" src="./image/ad_D_3.png" alt="一般廣告"
           /></a>
         </div>
@@ -164,29 +269,41 @@
             費用是你花費的時間轉換為秒數再乘十倍，非常感謝您支持我們我們精心製作的小遊戲！
             按下下面的按鈕即代表您願意贊助我們，不過我們也有不贊助方案，請點<a
               href="#"
-              class="text-secondary text-decoration-underline"
+              class="subscribe text-secondary text-decoration-underline"
               >這裡</a
             >。
           </p>
           <a
-            href="endpage.html"
+            href="#"
+            id="end"
             class="bg-orange fs-7 border-0 rounded py-4 px-5"
           >
             ❤️完成閱讀❤️
           </a>
         </div>
       </content>
-      <div class="float-box position-fixed bottom-0 start-0">
+      <div class="floatad position-fixed top-0 start-0">
         <div class="position-relative">
-          <a href="#"
-            ><img
-              src="./image/cancel.png"
-              alt="關閉鍵"
-              class="cancel-button position-absolute top-0 start-0"
+          <a href="#" class="close position-absolute top-0 start-0"
+            ><img src="./image/cancel.png" alt="關閉鍵" class="cancel-button"
           /></a>
-          <a href="#"> <img src="./image/small-ad-3.png" alt="漂浮廣告" /></a>
+          <a href="#" class="ad" onclick="alertTest(`./image/small-ad-2.png`)">
+            <img src="./image/small-ad-2.png" alt="漂浮廣告"
+          /></a>
+        </div>
+      </div>
+      <div class="floatad position-fixed bottom-0 start-0">
+        <div class="position-relative">
+          <a href="#" class="close position-absolute top-0 start-0"
+            ><img src="./image/cancel.png" alt="關閉鍵" class="cancel-button"
+          /></a>
+          <a href="#" class="ad" onclick="alertTest(`./image/small-ad-3.png`)">
+            <img src="./image/small-ad-3.png" alt="漂浮廣告"
+          /></a>
         </div>
       </div>
     </div>
+    <script src="./js/settlement.js"></script>
+    <!-- <script src="./js/full.js"></script> -->
   </body>
 </html>

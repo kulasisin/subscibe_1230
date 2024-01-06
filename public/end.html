@@ -16,12 +16,23 @@
         </div>
         <p>恭喜您完成遊戲！</p>
         <ol>
-          <li>您共花費了 [遊戲時間] 完成遊戲。</li>
           <li>
-            在遊戲中，您總共按下了 [按鈕數量] 次訂閱按鈕、誤觸 [按鈕數量]
-            次廣告。
+            您共花費了
+            <span class="text-danger" id="time-display"></span> 完成遊戲。
           </li>
-          <li>由於誤觸廣告及訂閱按鈕，您總共需要繳交的年費為 [總年費金額]。</li>
+          <li>
+            在遊戲中，您總共按下了
+            <span class="text-danger" id="score-sub-display">0</span>
+            訂閱按鈕、誤觸
+            <span class="text-danger" id="score-ad-display">0</span>
+            廣告，並且成功關閉了<span class="text-danger" id="score-x-display"
+              >0</span
+            >廣告。
+          </li>
+          <li>
+            由於誤觸廣告及訂閱按鈕，您總共需要繳交的年費為
+            <span class="text-danger" id="score-subscore-display">0</span>。
+          </li>
         </ol>
         <p>謝謝您參與我們的遊戲，我們期待為您提供一個愉快的遊戲體驗！</p>
         <div class="text-gray pt-5">
@@ -35,5 +46,7 @@
         </div>
       </div>
     </div>
+
+    <script src="./js/display.js"></script>
   </body>
 </html>

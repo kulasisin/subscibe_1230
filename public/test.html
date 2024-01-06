@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+   
+    
+    <!-- 引入 p5.js 庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js"></script>
+    <!-- JavaScript 檔案 這個是滿版廣告的js檔 會另外跑出一個畫布-->
+    <script src="../full.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var startImage = document.querySelector('.start');
+
+            startImage.addEventListener('click', function (event) {
+            // 按遊戲開始圖片後 圖片消失 且觸發遊戲開始事件 
+                startImage.style.display = 'none';
+                // 觸發遊戲開始事件
+                var gameStartEvent = new Event('gameStart');
+                document.dispatchEvent(gameStartEvent);
+            });
+        });
+
+    </script>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var interval = Math.floor(Math.random() * (7000 - 3000) + 3000); // 隨機時間3-7 秒
+            var isGameStarted = false; // 新增變數，標記遊戲是否已經開始
+    
+            // 監聽遊戲開始事件
+            document.addEventListener('gameStart', function () {
+                isGameStarted = true;
+            });
+    
+            //一段時間(3-7秒)就跳出一個固定的廣告
+            setInterval(function () {
+                if (isGameStarted) {
+                    var newImage = document.createElement('img');
+                    var img_index = Math.floor(Math.random() * 2) + 1;
+                    newImage.src = `../images/fixed-${img_index}.png`;
+                    newImage.className = 'fixed';
+                    newImage.style.position = 'fixed';
+                    newImage.style.top = Math.random() * 390 + 10 + 'px'; //可調整隨機出現的上下範圍
+                    newImage.style.left = Math.random() * 800 + 100 + 'px'; //可調整出現的左右範圍
+                    newImage.style.width = '450px';
+                    newImage.style.height = '300px';
+                    newImage.style.zIndex = '2';
+    
+                    //按跳出來的固定廣告右上角可隱藏
+                    newImage.addEventListener('click', function (event) {
+                        var targetRight = newImage.offsetLeft + newImage.width;
+                        var targetTop = newImage.offsetTop;
+                        var clickThreshold = 10; //判斷滑鼠點擊的大小的範圍
+    
+                        var clickX = event.clientX;
+                        var clickY = event.clientY;
+    
+                        if (clickX >= targetRight - clickThreshold && clickX <= targetRight && clickY >= targetTop && clickY <= targetTop + clickThreshold) {
+                            newImage.style.display = 'none';
+                        }
+                    });
+    
+                    document.body.appendChild(newImage);
+                }
+            }, interval);
+        });
+    </script>
+    
+
+    <!-- <script> //測試用
+        document.addEventListener("DOMContentLoaded", function () {
+                var fixedImage = document.querySelector('.fixed');
+
+                fixedImage.addEventListener('click', function (event) {
+                // 設定特定位置的區域
+                var targetRight = fixedImage.offsetLeft + fixedImage.width;  // 特定位置的右邊界
+                var targetTop = fixedImage.offsetTop;  // 特定位置的上邊界
+                var clickThreshold = 50;  // 點擊範圍的寬度
+
+                // 獲取滑鼠點擊的位置
+                var clickX = event.clientX;
+                var clickY = event.clientY;
+
+                // 如果點擊位置在特定區域內，則隱藏圖片
+                if (clickX >= targetRight - clickThreshold && clickX <= targetRight && clickY >= targetTop && clickY <= targetTop + clickThreshold) {
+                    fixedImage.style.display = 'none';
+                }
+            });
+        });
+
+    </script> -->
+    
+    
+    <style>
+        .fixed {
+            cursor: pointer; /* 添加手型游標以顯示點擊可能 */
+            position: fixed; top: 200px; left: 100px; width: 450px; height: 300px; z-index: 2;
+        } /*top:10-400 left:100-1000*/
+        .start{
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 700px;
+            height: 500px;
+            margin-top: -250px; /* 負的高度的一半 */
+            margin-left: -350px; /* 負的寬度的一半 */
+            z-index: 3;
+        }
+    </style>
+
+</head>
+
+<body>
+    <img class="start" src="../images/start.png">
+   
+    <header class="z-1 position-absolute top-0 w-100">
+        <ul class="ps-0 d-flex justify-content-around align-content-center fw-bolder fs-6 fs-sm-4 w-100 mb-0">
+            <li><a class="py-4 d-block" href="">專案介紹</a></li>
+            <li><a class="py-4 d-block" href="">互動式作品</a></li>
+            <li><a class="py-4 d-block" href="">生成式作品</a></li>
+            <li><a class="py-4 d-block" href="">觀眾回饋</a></li>
+            <li><a class="py-4 d-block" href="">團隊介紹</a></li>
+        </ul>
+    </header>
+
+    <div class="wrap">
+        <div class="banner d-flex justify-content-center">
+            <p></p>
+        </div>
+    </div>
+    <img class="logo" src="../images/full-1.png">
+</body>
+</html>
